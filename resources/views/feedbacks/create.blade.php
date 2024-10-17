@@ -51,9 +51,9 @@
             <br>
             <select name="category">
                 <option value="">- Selecione uma categoria -</option>
-                <option value="sugestao">Sugestão</option>
-                <option value="reclamacao">Reclamação</option>
-                <option value="elogio">Elogio</option>
+                <option value="Sugestão">Sugestão</option>
+                <option value="Reclamação">Reclamação</option>
+                <option value="Elogio">Elogio</option>
             </select>
             @if($errors->has('category'))
                 <span class="errors">{{ $errors->first('category') }}</span>

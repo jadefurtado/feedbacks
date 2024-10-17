@@ -41,11 +41,11 @@
                             <span>{{ $feedback->category }}</span>
                             @php
                                 $image = '';
-                                if($feedback->category == 'sugestao') {
+                                if($feedback->category == 'Sugestão') {
                                     $image = 'suggestion.png';
-                                } elseif ($feedback->category == 'reclamacao') {
+                                } elseif ($feedback->category == 'Reclamação') {
                                     $image = 'thumb-down.png';
-                                } elseif ($feedback->category == 'elogio') {
+                                } elseif ($feedback->category == 'Elogio') {
                                     $image = 'thumb-up.png';
                                 }
                             @endphp
