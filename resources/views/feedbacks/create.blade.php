@@ -12,56 +12,72 @@
     <title>Create Feedback</title>
 </head>
 <body>
-    @if (session('success'))
-    <script>
-        // Exibir alerta apenas quando a sessão tiver uma mensagem de sucesso
-        window.onload = function() {
-            Swal.fire({
-                icon: 'success',
-                title: '{{ session('success') }}',
-                showConfirmButton: false,
-                timer: 3000,
-                toast: true,
-                position: 'top'
-            });
-        };
-    </script><!--sweet-alert-->
-@endif
-    <div class="title">
-        <h1>Envie seu Feedback</h1>
-        <img src="/images/positive-feedback-icon.svg" alt="">
-    </div><!--.title-->
-    <div class="container">
-        <form action="{{ route('feedback.store') }}" method="POST">
-            @csrf
-            <input type="text" name="name" placeholder="Seu nome">
-            @if ($errors->has('name'))
-                <span class="errors">{{ $errors->first('name') }}</span>
+    <header>
+        <div class="menu">
+            <div class="menu__logo-title">
+                <img src="/images/positive-feedback-icon.svg" alt="Logo">
+                <h1>Feedbacks</h1>
+            </div>
+            <div class="menu__button">
+                <a href="{{ route('feedback.index') }}">Ver Feedbacks</a>
+            </div>
+        </div>
+        <hr>
+    </header>
+    <main>
+        <div class="container">
+            @if (session('success'))
+        <script>
+            // Exibir alerta apenas quando a sessão tiver uma mensagem de sucesso
+            window.onload = function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: '{{ session('success') }}',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    toast: true,
+                    position: 'top'
+                });
+            };
+        </script><!--sweet-alert-->
             @endif
-            <br>
-            <input type="email" name="email" placeholder="Seu email">
-            @if ($errors->has('email'))
-                <span class="errors">{{ $errors->first('email') }}</span>
-            @endif
-            <br>
-            <textarea name="message" placeholder="Sua mensagem" cols="30" rows="10"></textarea>
-            @if($errors->has('message'))
-                <span class="errors">{{ $errors->first('message') }}</span>
-            @endif
-            <br>
-            <select name="category">
-                <option value="">- Selecione uma categoria -</option>
-                <option value="Sugestão">Sugestão</option>
-                <option value="Reclamação">Reclamação</option>
-                <option value="Elogio">Elogio</option>
-            </select>
-            @if($errors->has('category'))
-                <span class="errors">{{ $errors->first('category') }}</span>
-            @endif
-            <br>
-            <button type="submit">Enviar Feedback</button>
-        </form>
-    </div> <!--.container-->
+        <div class="title">
+            <h1>Envie seu Feedback</h1>
+            <img src="/images/positive-feedback-icon.svg" alt="">
+        </div><!--.title-->
+            <div class="container-form">
+                <form action="{{ route('feedback.store') }}" method="POST">
+                    @csrf
+                    <input type="text" name="name" placeholder="Seu nome">
+                    @if ($errors->has('name'))
+                        <span class="errors">{{ $errors->first('name') }}</span>
+                    @endif
+                    <br>
+                    <input type="email" name="email" placeholder="Seu email">
+                    @if ($errors->has('email'))
+                        <span class="errors">{{ $errors->first('email') }}</span>
+                    @endif
+                    <br>
+                    <textarea name="message" placeholder="Sua mensagem" cols="30" rows="10"></textarea>
+                    @if($errors->has('message'))
+                        <span class="errors">{{ $errors->first('message') }}</span>
+                    @endif
+                    <br>
+                    <select name="category">
+                        <option value="">- Selecione uma categoria -</option>
+                        <option value="Sugestão">Sugestão</option>
+                        <option value="Reclamação">Reclamação</option>
+                        <option value="Elogio">Elogio</option>
+                    </select>
+                    @if($errors->has('category'))
+                        <span class="errors">{{ $errors->first('category') }}</span>
+                    @endif
+                    <br>
+                    <button type="submit">Enviar Feedback</button>
+                </form>
+            </div><!--.container-form-->
+        </div> <!--.container-->
+    </main>    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
