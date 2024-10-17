@@ -28,49 +28,36 @@
         <div class="feedback-slider">
             <button class="arrow left-arrow">&lt;</button>
             <div class="feedback-cards">
-                <div class="feedback-card">
-                    <div class="feedback-card__profile">
-                        <img src="/images/profile.png" alt="user-icon">
-                        <p>Nome do usuário 1</p>
-                    </div>
-                    <div class="feedback-card__message">
-                        <p>Feedback 1: Duis suscipit commodo convallis. Sed tempus vestibulum efficitur. Nam id faucibus odio. Sed eleifend mauris ac gravida posuere. Fusce viverra interdum rutrum. Mauris in aliquet massa, eu tincidunt lacus. Donec commodo tortor quam, lacinia ornare dolor egestas sed.</p>
-                    </div>
-                    <div class="feedback-card__category">
-                        <span>Categoria 1</span>
-                        <img src="/images/thumb-up.png" alt="">
-                    </div>
-                </div><!--.feedback-card-->
-                <div class="feedback-card">
-                    <div class="feedback-card__profile">
-                        <img src="/images/profile.png" alt="user-icon">
-                        <p>Nome do usuário 2</p>
-                    </div>
-                    <div class="feedback-card__message">
-                        <p>Feedback 2: Duis suscipit commodo convallis. Sed tempus vestibulum efficitur. Nam id faucibus odio. Sed eleifend mauris ac gravida posuere. Fusce viverra interdum rutrum. Mauris in aliquet massa, eu tincidunt lacus. Donec commodo tortor quam, lacinia ornare dolor egestas sed.</p>
-                    </div>
-                    <div class="feedback-card__category">
-                        <span>Categoria 2</span>
-                        <img src="/images/thumb-up.png" alt="">
-                    </div>
-                </div><!--.feedback-card-->
-                <div class="feedback-card">
-                    <div class="feedback-card__profile">
-                        <img src="/images/profile.png" alt="user-icon">
-                        <p>Nome do usuário 3</p>
-                    </div>
-                    <div class="feedback-card__message">
-                        <p>Feedback 3: Duis suscipit commodo convallis. Sed tempus vestibulum efficitur. Nam id faucibus odio. Sed eleifend mauris ac gravida posuere. Fusce viverra interdum rutrum. Mauris in aliquet massa, eu tincidunt lacus. Donec commodo tortor quam, lacinia ornare dolor egestas sed.</p>
-                    </div>
-                    <div class="feedback-card__category">
-                        <span>Categoria 3</span>
-                        <img src="/images/thumb-up.png" alt="">
-                    </div>
-                </div><!--.feedback-card-->
+                @foreach($feedbacks as $feedback) 
+                    <div class="feedback-card">
+                        <div class="feedback-card__profile">
+                            <img src="/images/profile.png" alt="user-icon">
+                            <p>{{ $feedback->name }}</p>
+                        </div>
+                        <div class="feedback-card__message">
+                            <p>{{ $feedback->message }}</p>
+                        </div>
+                        <div class="feedback-card__category">
+                            <span>{{ $feedback->category }}</span>
+                            @php
+                                $image = '';
+                                if($feedback->category == 'sugestao') {
+                                    $image = 'suggestion.png';
+                                } elseif ($feedback->category == 'reclamacao') {
+                                    $image = 'thumb-down.png';
+                                } elseif ($feedback->category == 'elogio') {
+                                    $image = 'thumb-up.png';
+                                }
+                            @endphp
+                            <img src="/images/{{ $image }}" alt="">
+                        </div>
+                    </div><!--.feedback-card-->
+                @endforeach
             </div><!--.feedback-cards-->
             <button class="arrow right-arrow">&gt;</button>
         </div><!--.feedback-slider-->
-    </div>
+    </div><!--.container-->
 </main>
+<script src="{{ asset('js/carousel.js') }}"></script>
 </body>
 </html>
